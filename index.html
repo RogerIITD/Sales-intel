@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SalesIntel AI — GTM Intelligence Platform</title>
+  <meta name="description" content="AI-powered GTM Intelligence Platform for pipeline analytics, deal forecasting, call summaries, and CRM enrichment.">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+</head>
+<body>
+  <div class="app-container">
+
+    <!-- ── Sidebar ─────────────────────────────────── -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <div class="logo-row">
+          <div class="logo-icon">⚡</div>
+          <div class="logo-text">
+            <span class="logo-name">SalesIntel AI</span>
+            <span class="logo-sub">GTM Intelligence</span>
+          </div>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav" id="sidebarNav">
+        <div class="nav-item active" data-section="pipeline">
+          <span class="nav-icon">📊</span>
+          <span>Pipeline Dashboard</span>
+          <span class="nav-badge">3</span>
+        </div>
+        <div class="nav-item" data-section="summarizer">
+          <span class="nav-icon">🤖</span>
+          <span>AI Call Summarizer</span>
+        </div>
+        <div class="nav-item" data-section="forecast">
+          <span class="nav-icon">📈</span>
+          <span>Deal Forecaster</span>
+        </div>
+        <div class="nav-item" data-section="drafter">
+          <span class="nav-icon">✉️</span>
+          <span>Follow-up Drafter</span>
+        </div>
+        <div class="nav-item" data-section="analysis">
+          <span class="nav-icon">🔍</span>
+          <span>Win/Loss Analysis</span>
+        </div>
+        <div class="nav-item" data-section="enrichment">
+          <span class="nav-icon">🧹</span>
+          <span>CRM Enrichment</span>
+        </div>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="sidebar-footer-info">
+          <div class="avatar">SK</div>
+          <div class="user-info">
+            <span class="user-name">Sarvesh K.</span>
+            <span class="user-role">GTM AI Builder</span>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- ── Main ────────────────────────────────────── -->
+    <main class="main-content">
+      <header class="top-header">
+        <div class="header-left">
+          <h1 id="pageTitle">Pipeline Dashboard</h1>
+          <p id="pageSubtitle">Real-time deal intelligence & cold-deal alerts</p>
+        </div>
+        <div class="header-right">
+          <button class="header-btn"><span class="status-dot"></span> Live Sync</button>
+          <button class="header-btn">🔔 Alerts</button>
+        </div>
+      </header>
+
+      <div class="page-content">
+
+        <!-- ═══ 1. PIPELINE DASHBOARD ═══ -->
+        <section class="page-section active" id="section-pipeline">
+          <div class="section-header">
+            <h2 class="section-title">Pipeline <span class="gradient-text">Intelligence</span></h2>
+            <p class="section-subtitle">Real-time visibility into your pipeline with AI-powered deal health scoring</p>
+          </div>
+
+          <!-- Alert Banner -->
+          <div class="alert-banner" id="coldAlertBanner">
+            <span class="alert-icon">🚨</span>
+            <div class="alert-text">
+              <h4>3 Deals Going Cold</h4>
+              <p>No activity detected in 14+ days. AI recommends immediate outreach for ₹1.8 Cr at risk.</p>
+            </div>
+          </div>
+
+          <!-- Stats -->
+          <div class="stats-row" id="pipelineStats">
+            <!-- Rendered by JS -->
+          </div>
+
+          <!-- Pipeline Board -->
+          <div class="pipeline-board" id="pipelineBoard">
+            <!-- Rendered by JS -->
+          </div>
+        </section>
+
+        <!-- ═══ 2. AI CALL SUMMARIZER ═══ -->
+        <section class="page-section" id="section-summarizer">
+          <div class="section-header">
+            <h2 class="section-title">AI Call <span class="gradient-text">Summarizer</span></h2>
+            <p class="section-subtitle">Paste raw call notes → Get structured summaries, action items & sentiment analysis in seconds</p>
+          </div>
+
+          <!-- Sample Transcripts Tabs -->
+          <div class="tabs" id="sampleTabs">
+            <button class="tab active" data-sample="0">Discovery Call</button>
+            <button class="tab" data-sample="1">Pricing Negotiation</button>
+            <button class="tab" data-sample="2">Technical Review</button>
+          </div>
+
+          <div class="summarizer-layout">
+            <!-- Input -->
+            <div class="card">
+              <div class="card-header">
+                <span class="card-title">📝 Call Notes Input</span>
+              </div>
+              <textarea class="textarea-box" id="callNotesInput" placeholder="Paste call notes or transcript here..."></textarea>
+              <div style="margin-top:14px;display:flex;gap:10px">
+                <button class="btn btn-primary" id="summarizeBtn">⚡ Summarize with AI</button>
+                <button class="btn btn-secondary" id="clearBtn">Clear</button>
+              </div>
+            </div>
+
+            <!-- Output -->
+            <div class="card" style="position:relative">
+              <div class="card-header">
+                <span class="card-title">📋 AI Summary</span>
+                <span class="card-badge badge-blue" id="summaryStatus">Ready</span>
+              </div>
+              <div class="summary-output" id="summaryOutput">
+                <div class="empty-state">
+                  <span class="empty-icon">🤖</span>
+                  <h3 class="empty-title">Paste notes & click Summarize</h3>
+                  <p class="empty-desc">The AI will extract key topics, action items, and sentiment from your call notes.</p>
+                </div>
+              </div>
+              <!-- Processing overlay -->
+              <div class="processing-overlay" id="processingOverlay">
+                <div class="processing-spinner"></div>
+                <span class="processing-text">Analyzing call notes with AI...</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ═══ 3. DEAL FORECASTER ═══ -->
+        <section class="page-section" id="section-forecast">
+          <div class="section-header">
+            <h2 class="section-title">Deal <span class="gradient-text">Forecaster</span></h2>
+            <p class="section-subtitle">Revenue forecasting with confidence intervals for leadership reporting</p>
+          </div>
+
+          <div class="tabs" id="quarterTabs">
+            <button class="tab active" data-quarter="Q1">Q1 FY26</button>
+            <button class="tab" data-quarter="Q2">Q2 FY26</button>
+            <button class="tab" data-quarter="Q3">Q3 FY26</button>
+            <button class="tab" data-quarter="Q4">Q4 FY26</button>
+          </div>
+
+          <div class="stats-row" id="forecastStats">
+            <!-- Rendered by JS -->
+          </div>
+
+          <div class="forecast-grid">
+            <div class="card">
+              <div class="card-header">
+                <span class="card-title">📊 Revenue Forecast by Category</span>
+                <span class="card-badge badge-blue">With Confidence Intervals</span>
+              </div>
+              <div class="chart-container">
+                <div class="bar-chart" id="forecastBarChart">
+                  <!-- Rendered by JS -->
+                </div>
+              </div>
+              <div class="chart-legend">
+                <div class="legend-item"><div class="legend-dot" style="background:rgba(59,130,246,0.3)"></div> Low Estimate</div>
+                <div class="legend-item"><div class="legend-dot" style="background:var(--accent-blue)"></div> Mid Forecast</div>
+                <div class="legend-item"><div class="legend-dot" style="background:rgba(139,92,246,0.3)"></div> High Estimate</div>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <span class="card-title">🎯 Win Probability</span>
+              </div>
+              <div class="donut-wrapper">
+                <div class="donut-chart" id="donutChart">
+                  <svg viewBox="0 0 100 100">
+                    <circle cx="50" cy="50" r="40" stroke="var(--bg-surface)" />
+                    <circle cx="50" cy="50" r="40" stroke="var(--accent-green)" stroke-dasharray="0 251" id="donutWon" />
+                    <circle cx="50" cy="50" r="40" stroke="var(--accent-blue)" stroke-dasharray="0 251" id="donutPipeline" />
+                    <circle cx="50" cy="50" r="40" stroke="var(--accent-amber)" stroke-dasharray="0 251" id="donutRisk" />
+                  </svg>
+                  <div class="donut-center">
+                    <span class="donut-value" id="donutValue">68%</span>
+                    <span class="donut-label">Confidence</span>
+                  </div>
+                </div>
+                <div class="chart-legend" style="margin-top:24px">
+                  <div class="legend-item"><div class="legend-dot" style="background:var(--accent-green)"></div> Won</div>
+                  <div class="legend-item"><div class="legend-dot" style="background:var(--accent-blue)"></div> In Pipeline</div>
+                  <div class="legend-item"><div class="legend-dot" style="background:var(--accent-amber)"></div> At Risk</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ═══ 4. FOLLOW-UP DRAFTER ═══ -->
+        <section class="page-section" id="section-drafter">
+          <div class="section-header">
+            <h2 class="section-title">Follow-up <span class="gradient-text">Drafter</span></h2>
+            <p class="section-subtitle">Select a deal → AI drafts a personalized follow-up email from the latest call notes</p>
+          </div>
+
+          <div class="drafter-layout">
+            <div class="card">
+              <div class="card-header">
+                <span class="card-title">🗂️ Select Deal</span>
+              </div>
+              <div class="deal-list" id="drafterDealList">
+                <!-- Rendered by JS -->
+              </div>
+            </div>
+
+            <div class="card" style="position:relative">
+              <div class="card-header">
+                <span class="card-title">✉️ AI-Generated Email</span>
+                <span class="card-badge badge-purple" id="drafterStatus">Select a deal</span>
+              </div>
+              <div id="emailOutput">
+                <div class="empty-state">
+                  <span class="empty-icon">✉️</span>
+                  <h3 class="empty-title">Select a deal to draft</h3>
+                  <p class="empty-desc">The AI will analyze the latest call notes and generate a context-aware follow-up email.</p>
+                </div>
+              </div>
+              <div class="processing-overlay" id="emailProcessing">
+                <div class="processing-spinner"></div>
+                <span class="processing-text">Drafting follow-up email...</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ═══ 5. WIN/LOSS ANALYSIS ═══ -->
+        <section class="page-section" id="section-analysis">
+          <div class="section-header">
+            <h2 class="section-title">Win/Loss <span class="gradient-text">Analysis</span></h2>
+            <p class="section-subtitle">Pattern detection across closed deals to improve conversion strategies</p>
+          </div>
+
+          <div class="stats-row" id="analysisStats">
+            <!-- Rendered by JS -->
+          </div>
+
+          <div class="analysis-grid">
+            <div class="card">
+              <div class="card-header">
+                <span class="card-title">📊 Win Rates by Segment</span>
+              </div>
+              <div class="horizontal-bars" id="winRateBars">
+                <!-- Rendered by JS -->
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <span class="card-title">🔍 AI-Detected Patterns</span>
+                <span class="card-badge badge-green">8 patterns found</span>
+              </div>
+              <div class="pattern-cards" id="patternCards">
+                <!-- Rendered by JS -->
+              </div>
+            </div>
+          </div>
+
+          <div style="margin-top:24px">
+            <div class="card">
+              <div class="card-header">
+                <span class="card-title">📈 Deal Cycle Duration (Days)</span>
+              </div>
+              <div class="horizontal-bars" id="cycleBars">
+                <!-- Rendered by JS -->
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ═══ 6. CRM ENRICHMENT ═══ -->
+        <section class="page-section" id="section-enrichment">
+          <div class="section-header">
+            <h2 class="section-title">CRM <span class="gradient-text">Enrichment</span></h2>
+            <p class="section-subtitle">LLM-powered data enrichment — auto-fill company info, funding, tech stack from sparse CRM records</p>
+          </div>
+
+          <div class="stats-row" id="enrichmentStats">
+            <!-- Rendered by JS -->
+          </div>
+
+          <div class="enrichment-toggle-wrap">
+            <div class="toggle-switch active" id="enrichToggle"></div>
+            <span class="toggle-label" id="enrichToggleLabel">Showing enriched data</span>
+          </div>
+
+          <div class="card" style="padding:0;overflow:hidden">
+            <div class="enrichment-table-wrap">
+              <table class="enrichment-table" id="enrichmentTable">
+                <!-- Rendered by JS -->
+              </table>
+            </div>
+          </div>
+        </section>
+
+      </div><!-- /page-content -->
+    </main>
+  </div><!-- /app-container -->
+
+  <script src="app.js"></script>
+</body>
+</html>
